@@ -17,7 +17,7 @@
     "Backup"
   ],
   "author": "Immortalmice",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^21.1.0",
     "electron-builder": "^23.6.0"
