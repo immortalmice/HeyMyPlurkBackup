@@ -1,0 +1,25 @@
+{
+  "name": "hey-my-plurk-backup",
+  "version": "1.0.0",
+  "description": "A app can configure your plurk backups",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win portable"
+  },
+  "build": {
+    "productName": "HeyMyPlurkBackup"
+  },
+  "repository": "https://github.com/immortalmice/HeyMyPlurkBackup",
+  "keywords": [
+    "Plurk",
+    "Backup"
+  ],
+  "author": "Immortalmice",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^21.1.0",
+    "electron-builder": "^23.6.0"
+  }
+}
