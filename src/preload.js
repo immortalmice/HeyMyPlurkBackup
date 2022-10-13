@@ -1,7 +1,8 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  openDevTools: () => ipcRenderer.send('open_devtools')
+  openDevTools: () => ipcRenderer.send('open_devtools'),
+  selectFolder: () => ipcRenderer.invoke('dialog:openDirectory')
 })
 
 window.addEventListener('DOMContentLoaded', () => {

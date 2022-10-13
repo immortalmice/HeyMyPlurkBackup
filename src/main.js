@@ -1,4 +1,10 @@
-const {app, BrowserWindow, globalShortcut, ipcMain} = require('electron')
+const {
+  app,
+  BrowserWindow,
+  globalShortcut,
+  ipcMain,
+  dialog
+} = require('electron')
 const path = require('path')
 
 app.whenReady().then(() => {
@@ -31,15 +37,13 @@ function createWindow () {
     height: height * 0.9,
     menuBarVisible: false,
     webPreferences: {
+      enableRemoteModule: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
 
   mainWindow.removeMenu()
-
-  // Open the DevTools.
   registerIPC(mainWindow)
-  mainWindow.webContents.openDevTools()
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'index.html'))
@@ -47,4 +51,13 @@ function createWindow () {
 
 function registerIPC(mainWindow) {
   ipcMain.on('open_devtools', () => mainWindow.webContents.openDevTools())
+
+  ipcMain.handle('dialog:openDirectory',
+    async () => {
+      const filePaths = dialog.showOpenDialogSync(mainWindow, {
+        defaultPath: __dirname,
+        properties: ['openDirectory']
+      })
+      return filePaths ? filePaths[0] : undefined
+    })
 }
